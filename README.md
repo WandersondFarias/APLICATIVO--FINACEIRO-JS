@@ -187,7 +187,7 @@ Se este projeto te ajudou, deixa uma ⭐ no repositório!
 
 <div align="center">
 
-Desenvolvido com dedicação para uso pessoal** 💅
+Desenvolvido com dedicação para uso pessoais e comerciais** 💅
 
 <br/>
 
