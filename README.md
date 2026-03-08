@@ -178,7 +178,7 @@ Se este projeto te ajudou, deixa uma ⭐ no repositório!
 ---
 
 <p align="center">
-                Desenvolvido POR WANDERSON DE FARIAS  
+                
 </p>
 
 
