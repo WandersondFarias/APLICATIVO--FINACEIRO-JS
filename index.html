@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinanceFlow – Controle Financeiro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon"><i class="fa-solid fa-chart-line"></i></span>
+      <span class="logo-text">Finance<strong>Flow</strong></span>
+    </div>
+    <nav>
+      <a href="#" class="nav-item active" data-section="dashboard">
+        <i class="fa-solid fa-house"></i><span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-section="transacoes">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transações</span>
+      </a>
+      <a href="#" class="nav-item" data-section="calendario">
+        <i class="fa-solid fa-calendar-days"></i><span>Calendário</span>
+      </a>
+      <a href="#" class="nav-item" data-section="configuracoes">
+        <i class="fa-solid fa-gear"></i><span>Configurações</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>Dados salvos localmente</span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <span id="currentDate" class="date-badge"></span>
+        <button class="btn-primary" id="btnNovaTransacao">
+          <i class="fa-solid fa-plus"></i> Nova Transação
+        </button>
+      </div>
+    </header>
+
+    <!-- ========== DASHBOARD ========== -->
+    <section class="section active" id="sec-dashboard">
+      <div class="cards-row">
+        <div class="card card-salario">
+          <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
+          <div class="card-info">
+            <span class="card-label">Salário Mensal</span>
+            <span class="card-value" id="cardSalario">R$ 0,00</span>
+          </div>
+          <button class="card-edit-btn" id="btnEditSalario"><i class="fa-solid fa-pen"></i></button>
+        </div>
+        <div class="card card-gastos">
+          <div class="card-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+          <div class="card-info">
+            <span class="card-label">Gastos do Mês</span>
+            <span class="card-value" id="cardGastos">R$ 0,00</span>
+          </div>
+        </div>
+        <div class="card card-receitas">
+          <div class="card-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+          <div class="card-info">
+            <span class="card-label">Receitas do Mês</span>
+            <span class="card-value" id="cardReceitas">R$ 0,00</span>
+          </div>
+        </div>
+        <div class="card card-economia">
+          <div class="card-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+          <div class="card-info">
+            <span class="card-label">Guardado no Mês</span>
+            <span class="card-value" id="cardEconomia">R$ 0,00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progresso de economia -->
+      <div class="economy-bar-section">
+        <div class="economy-bar-header">
+          <span>Meta de Economia</span>
+          <span id="economyPercent">0%</span>
+        </div>
+        <div class="economy-bar-bg">
+          <div class="economy-bar-fill" id="economyBar"></div>
+        </div>
+        <div class="economy-bar-sub">
+          <span id="economySubLeft">Guardado: R$ 0,00</span>
+          <span id="economySubRight">Meta: R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- Gráfico simples de barras mensais -->
+      <div class="chart-section">
+        <div class="chart-header">
+          <h2>Histórico Mensal</h2>
+        </div>
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+
+      <!-- Últimas transações -->
+      <div class="recent-section">
+        <div class="recent-header">
+          <h2>Últimas Transações</h2>
+          <a href="#" class="ver-tudo" data-section="transacoes">Ver tudo</a>
+        </div>
+        <div id="recentList" class="trans-list"></div>
+      </div>
+    </section>
+
+    <!-- ========== TRANSAÇÕES ========== -->
+    <section class="section" id="sec-transacoes">
+      <div class="trans-toolbar">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="receita">Receitas</button>
+          <button class="filter-btn" data-filter="despesa">Despesas</button>
+        </div>
+        <div class="search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar transação..." />
+        </div>
+      </div>
+      <div id="transList" class="trans-list full"></div>
+    </section>
+
+    <!-- ========== CALENDÁRIO ========== -->
+    <section class="section" id="sec-calendario">
+      <div class="cal-wrap">
+        <div class="cal-header">
+          <button id="calPrev"><i class="fa-solid fa-chevron-left"></i></button>
+          <h2 id="calMonthYear"></h2>
+          <button id="calNext"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="cal-days-header">
+          <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <div class="cal-events-panel">
+        <div class="cal-events-header">
+          <h3 id="calSelectedDate">Selecione um dia</h3>
+          <button class="btn-primary small" id="btnAddCalEvent"><i class="fa-solid fa-plus"></i> Evento</button>
+        </div>
+        <div id="calEventsList"></div>
+      </div>
+    </section>
+
+    <!-- ========== CONFIGURAÇÕES ========== -->
+    <section class="section" id="sec-configuracoes">
+      <div class="config-card">
+        <h2><i class="fa-solid fa-wallet"></i> Salário & Meta</h2>
+        <div class="config-form">
+          <label>Salário Mensal (R$)</label>
+          <input type="number" id="inputSalario" placeholder="Ex: 3500" min="0" step="0.01"/>
+          <label>Meta de Economia Mensal (R$)</label>
+          <input type="number" id="inputMeta" placeholder="Ex: 800" min="0" step="0.01"/>
+          <button class="btn-primary" id="btnSalvarConfig">
+            <i class="fa-solid fa-floppy-disk"></i> Salvar Configurações
+          </button>
+        </div>
+      </div>
+      <div class="config-card danger-zone">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> Zona de Risco</h2>
+        <p>Esta ação irá apagar TODOS os dados do aplicativo permanentemente.</p>
+        <button class="btn-danger" id="btnResetAll">
+          <i class="fa-solid fa-trash"></i> Apagar Todos os Dados
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== MODAL TRANSAÇÃO ========== -->
+  <div class="modal-overlay" id="modalTransacao">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Nova Transação</h3>
+        <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Descrição *</label>
+            <input type="text" id="fDescricao" placeholder="Ex: Supermercado" />
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label>Valor (R$) *</label>
+            <input type="number" id="fValor" placeholder="0,00" min="0" step="0.01"/>
+          </div>
+          <div class="form-group">
+            <label>Tipo *</label>
+            <select id="fTipo">
+              <option value="despesa">Despesa</option>
+              <option value="receita">Receita</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label>Categoria</label>
+            <select id="fCategoria">
+              <option value="alimentacao">🍔 Alimentação</option>
+              <option value="transporte">🚗 Transporte</option>
+              <option value="saude">💊 Saúde</option>
+              <option value="lazer">🎮 Lazer</option>
+              <option value="moradia">🏠 Moradia</option>
+              <option value="educacao">📚 Educação</option>
+              <option value="salario">💰 Salário</option>
+              <option value="outros">📦 Outros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data *</label>
+            <input type="date" id="fData"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Observação</label>
+          <input type="text" id="fObs" placeholder="Opcional..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="modalCancel">Cancelar</button>
+        <button class="btn-primary" id="modalSalvar"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL EVENTO CALENDÁRIO ========== -->
+  <div class="modal-overlay" id="modalEvento">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="eventoModalTitle">Novo Evento</h3>
+        <button class="modal-close" id="eventoModalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="eventoEditId"/>
+        <div class="form-group">
+          <label>Título do Evento *</label>
+          <input type="text" id="eventoTitulo" placeholder="Ex: Pagar aluguel"/>
+        </div>
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label>Data *</label>
+            <input type="date" id="eventoData"/>
+          </div>
+          <div class="form-group">
+            <label>Tipo</label>
+            <select id="eventoTipo">
+              <option value="lembrete">🔔 Lembrete</option>
+              <option value="pagamento">💳 Pagamento</option>
+              <option value="recebimento">💵 Recebimento</option>
+              <option value="meta">🎯 Meta</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Descrição</label>
+          <input type="text" id="eventoDesc" placeholder="Opcional..."/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="eventoCancel">Cancelar</button>
+        <button class="btn-primary" id="eventoSalvar"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
