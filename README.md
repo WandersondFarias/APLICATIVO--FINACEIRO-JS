@@ -180,3 +180,85 @@ Se este projeto te ajudou, deixa uma ⭐ no repositório!
 <p align="center">
   Desenvolvido POR WANDERSON DE FARIAS  usando HTML, CSS e JavaScript puro
 </p>
+
+
+
+## 👨‍💻 Desenvolvimento
+
+<div align="center">
+
+Desenvolvido com dedicação para o **Estúdio Reis Unhas** 💅
+
+<br/>
+
+<a href="https://github.com/wandersondfarias">
+  <img src="https://img.shields.io/badge/GitHub-wandersondfarias-181717?style=for-the-badge&logo=github&labelColor=0e1a14" />
+</a>
+&nbsp;
+<a href="https://www.linkedin.com/in/wandersonfariaswf/">
+  <img src="https://img.shields.io/badge/LinkedIn-Wanderson%20de%20Farias-0077B5?style=for-the-badge&logo=linkedin&labelColor=0e1a14" />
+</a>
+
+<br/><br/>
+
+<img src="https://img.shields.io/badge/Desenvolvido%20por-Wanderson%20de%20Farias-c9a84c?style=for-the-badge&labelColor=0e1a14" />
+
+</div>
+
+---
+
+## 📜 Licença
+
+Este projeto é de **uso livre** para fins pessoais e comerciais.
+
+---
+
+<div align="center">
+
+
+<p align="center">
+  <img src="./logo pamela.jpeg" width="120" />
+</p>
+
+<p align="center">
+  <a href="https://wandersondfarias.github.io/SISTEMA-DE-SAL-O-DE-UNHA-PAMELLA/" target="_blank">
+    🚀 <b>Acessar Sistema Online</b>
+  </a>
+</p>
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
